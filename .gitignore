@@ -39,3 +39,6 @@ cscope.*
 oprofile*
 *.log
 position.txt
+# editor backups
+*~
+
