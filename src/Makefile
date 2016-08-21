@@ -831,7 +831,7 @@ hal_ppmc-objs := hal/drivers/hal_ppmc.o $(MATHSTUB)
 
 obj-$(CONFIG_HOSTMOT2) += hostmot2.o hm2_test.o hm2_pci.o hm2_7i43.o hm2_7i90.o setsserial.o
 ifeq ($(BUILD_SYS),uspace)
-obj-$(CONFIG_HOSTMOT2) += hm2_eth.o hm2_spi.o hm2_rpspi.o hal_bb_gpio.o
+obj-$(CONFIG_HOSTMOT2) += hm2_eth.o hm2_spi.o hm2_rpspi.o
 endif
 hostmot2-objs :=			  \
     hal/drivers/mesa-hostmot2/hostmot2.o  \
@@ -875,9 +875,6 @@ hm2_spi-objs  :=			  \
 hm2_rpspi-objs  :=			  \
     hal/drivers/mesa-hostmot2/hm2_rpspi.o   \
     $(MATHSTUB)
-hal_bb_gpio-objs  :=			  \
-    hal/drivers/hal_bb_gpio.o		  \
-    $(MATHSTUB)
 hm2_test-objs :=			  \
     hal/drivers/mesa-hostmot2/hm2_test.o  \
     hal/drivers/mesa-hostmot2/bitfile.o   \
@@ -885,6 +882,14 @@ hm2_test-objs :=			  \
 setsserial-objs :=			  \
     hal/drivers/mesa-hostmot2/setsserial.o  \
     $(MATHSTUB)
+
+ifeq ($(BUILD_SYS),uspace)
+obj-$(CONFIG_HAL_BB) += hal_bb_gpio.o
+endif
+hal_bb_gpio-objs  :=			  \
+    hal/drivers/hal_bb_gpio.o		  \
+    $(MATHSTUB)
+
 
 obj-$(CONFIG_CLASSICLADDER_RT) += classicladder_rt.o
 classicladder_rt-objs := hal/classicladder/module_hal.o $(MATHSTUB)
